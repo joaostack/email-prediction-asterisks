@@ -13,8 +13,8 @@
 It's necessary to install the intelx library for python
 
 ```bash
-git clone https://github.com/Quantika14/email-prediction-asterisks
-pip3 install -r requeriments.txt
+git clone https://github.com/joaostack/email-prediction-asterisks
+pip3 install -r requirements.txt
 
 git clone https://github.com/IntelligenceX/SDK
 pip3 install SDK/Python
