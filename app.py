@@ -1,3 +1,5 @@
+#!/usr/bin/env -S python3
+
 from ctypes import util
 from tabnanny import check
 import m.intelx as ix
