@@ -9,6 +9,7 @@ import shutil
 import time
 from validate_email import validate_email
 
+from tabulate import tabulate
 from colorama import Fore, Back, Style
 
 def main():
@@ -165,7 +166,7 @@ def main():
                         em = f"{username}@{domain}"
                         emails.append(em)
 
-    print (Fore.GREEN + ", ".join(emails) + Fore.RESET)
+    print(Fore.GREEN + tabulate([[email] for email in emails], headers=["Emails"]) + Fore.RESET)
 
     #Verificamos si los emails existen
     #emails_ver = []

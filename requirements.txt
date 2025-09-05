@@ -1,3 +1,4 @@
 dnspython
 py3-validate-email
 colorama
+tabulate
