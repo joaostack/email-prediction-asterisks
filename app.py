@@ -68,10 +68,10 @@ def main():
 
     #Si lo expuesto aparece en el nombre
     if exposed in name:
-        print("The exposed letters match the name...")
+        print(Fore.YELLOW + "The exposed letters match the name..." + Fore.RESET)
         #Si lo expuesto es igual al nombre
         if exposed == name:
-            print("The exposed letters are the same as the name...")
+            print(Fore.YELLOW + "The exposed letters are the same as the name..." + Fore.RESET)
             if c_name + c_last_name == c_email_username:
                 em = f"{name}{last_name}@{domain}"
                 emails.append(em)
@@ -165,10 +165,10 @@ def main():
                         em = f"{username}@{domain}"
                         emails.append(em)
 
-    print (emails)
+    print (Fore.GREEN + ", ".join(emails) + Fore.RESET)
 
     #Verificamos si los emails existen
-    emails_ver = []
+    #emails_ver = []
     for email in emails:
         is_valid = validate_email(
             email_address=email,
