@@ -7,34 +7,36 @@ import shutil
 import time
 from validate_email import validate_email
 
+from colorama import Fore, Back, Style
+
 def main():
 
     #Imprimimos el banner
     utils.print_banner()
 
     #Obtenemos el target
-    target = input("Insert email with asterisk: ")
+    target = input(Fore.YELLOW + "Insert email with asterisk => " + Fore.RESET)
 
     check_target = utils.asteriskDetector(target)
     if check_target:
         pass
     else:
-        print("Plis insert a correct email.")
+        print(Fore.RED + "Plis insert a correct email." + Fore.RESET)
 
     #Contamos los asteriscos y lo imprimimos en pantalla
     asterisk_count = utils.asteriskDetector(target)
-    print(f"{asterisk_count} asterisks have been detected.")
+    print(Fore.CYAN + f"{asterisk_count} asterisks have been detected." + Fore.RESET)
 
     #Recogemos los datos del objetivo
-    name = input("Insert target name: ")
-    last_name = input("Insert last name: ")
-    birt = input("Insert year of birth: ")
+    name = input(Fore.YELLOW + "Insert target name: " + Fore.RESET)
+    last_name = input(Fore.YELLOW + "Insert last name: " + Fore.RESET)
+    birt = input(Fore.YELLOW + "Insert year of birth: " + Fore.RESET)
 
     #Recogemos nexos para relacionar datos con intelx
     #phone = input("Insert phone number: ")
     #city = input("Insert city: ")
     #country = input("Insert country: ")
-    username = input("Insert username: ")
+    username = input(Fore.YELLOW + "Insert username: " + Fore.RESET)
 
     #Contamos la longitud de cada datos
     c_name = len(name)
@@ -52,12 +54,12 @@ def main():
 
     #Obtenemos el dominio
     domain = target_split[1]
-    print(f"The domain used in the email is {domain}")
+    print(Fore.CYAN + f"The domain used in the email is {domain}" + Fore.RESET)
 
     #Detectamos las letras expuestas en el username
     target_asterisk_split = target.split("*")
     exposed = str(target_asterisk_split[0]).replace("'","")
-    print(f"The exposed letters are: {exposed}")
+    print(Fore.CYAN + f"The exposed letters are: {exposed}" + Fore.RESET)
 
     #Creamos una lista de emails que verificaremos posteriormente
     emails = []
@@ -180,14 +182,14 @@ def main():
             smtp_tls_context=None,
             smtp_debug=False)
 
-        file_result = input("Insert file result name (result.txt): ")
+        file_result = input(Fore.YELLOW + "Insert file result name (result.txt): " + Fore.RESET)
         if is_valid:
             print (f"{email} exist.")
             f = open(file_result, "a")
             data = f"{email},True\n"
             f.write(data)
         else:
-            print (f"{email} no exist.")
+            print (Fore.RED + f"{email} no exist." + Fore.RESET)
             f = open(file_result, "a")
             data = f"{email},False\n"
             f.write(data)
@@ -199,7 +201,7 @@ def main():
             try:
                 filesPastes = IX.attack(email_validate)
             except Exception as e:
-                print("[ERROR][>] INTELX error...")
+                print(Fore.RED + "[ERROR][>] INTELX error..." + Fore.RESET)
             count_fp = len(filesPastes)
 
             if count_fp > 0:
@@ -214,7 +216,7 @@ def main():
                             if email_validate in line:
                                 rep.add_markdown(f"- {line}")
                 except Exception as e:
-                    print("[ERROR][>] leak reading error. check permissions")
+                    print(Fore.RED + "[ERROR][>] leak reading error. check permissions" + Fore.RESET)
             else:
                 print(f"{email_validate} no leaks...")
 
